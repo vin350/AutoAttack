@@ -1,0 +1,10 @@
+{
+  "autoattack.midnightconfig.title":"Configuração do AutoAttack",
+  "autoattack.midnightconfig.text1":"Auto Attack faz com que segurar o botão de ataque auto ataca com a espada.",
+  "autoattack.midnightconfig.preventsHittingBlocks":"Previne você de quebrar blocos com todas as ferramentas",
+  "autoattack.midnightconfig.preventsHittingBlocksSwords":"Previne você de quebrar blocos apenas com espadas",
+  "autoattack.midnightconfig.cleanCut":"Atacar inimigos através de obstáculos (similar ao mod CleanCut)",
+
+  "key.autoattack.preventsHittingBlocks":"Alterna entre Prevenir a quebra de blocos",
+  "category.autoattack.autoattack":"AutoAttack"
+}
