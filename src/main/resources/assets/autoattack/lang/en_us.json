@@ -1,0 +1,9 @@
+{
+  "autoattack.midnightconfig.title":"AutoAttack Config",
+  "autoattack.midnightconfig.text1":"Auto Attack makes it so that holding the attack button autoswings the sword",
+  "autoattack.midnightconfig.preventsHittingBlocks":"Prevents you from hitting blocks in all tools",
+  "autoattack.midnightconfig.preventsHittingBlocksSwords":"Prevents you from hitting blocks only in swords",
+
+  "key.autoattack.preventsHittingBlocks":"Toggle Prevents from hitting blocks",
+  "category.autoattack.autoattack":"AutoAttack"
+}

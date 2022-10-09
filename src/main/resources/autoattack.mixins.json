@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "vin35.autoattack.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "client": [
+    "AutoAttackMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
