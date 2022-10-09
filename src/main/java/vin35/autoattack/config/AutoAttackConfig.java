@@ -11,4 +11,6 @@ public class AutoAttackConfig extends AutoAttack {
     public static boolean preventsHittingBlocks = false;
     @Entry
     public static boolean preventsHittingBlocksSwords = true;
+    @Entry
+    public  static  boolean cleanCut = true;
 }
