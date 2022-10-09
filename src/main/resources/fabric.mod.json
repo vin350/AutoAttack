@@ -10,10 +10,13 @@
   ],
   "contributors": [
     "Tfarecnim",
-    "BlazingTwist"
+    "BlazingTwist",
+    "Rongmario"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/autoattack"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/autoattack",
+    "sources": "https://github.com/vin350/AutoAttack/tree/1.19.X",
+    "issues": "https://github.com/vin350/AutoAttack/issues"
   },
 
   "license": "MIT",
