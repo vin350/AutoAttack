@@ -28,7 +28,8 @@
       "vin35.autoattack.Main"
     ],
     "client": [
-      "vin35.autoattack.AutoAttack"
+      "vin35.autoattack.AutoAttack",
+      "vin35.autoattack.config.KeyBindingConfig"
     ]
   },
   "mixins": [
