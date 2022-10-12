@@ -7,7 +7,7 @@
   ],
   "client": [
     "AutoAttackMixin",
-    "InGameHudMixin"
+    "GameRenderMixin"
   ],
   "injectors": {
     "defaultRequire": 1
