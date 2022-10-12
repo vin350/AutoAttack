@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import vin35.autoattack.config.AutoAttackConfig;
 
 @Mixin(GameRenderer.class)
 public class GameRenderMixin {
@@ -25,7 +26,7 @@ public class GameRenderMixin {
     @Inject(method = "updateTargetedEntity", at = @At("TAIL"), cancellable = true)
     public void updateTargetedEntity(float tickDelta, CallbackInfo ci) {
         if (this.client.crosshairTarget != null && this.client.player != null && this.client.world != null) {
-            if (this.client.crosshairTarget.getType() == HitResult.Type.BLOCK) {
+            if (this.client.crosshairTarget.getType() == HitResult.Type.BLOCK && AutoAttackConfig.cleanCut) {
                 BlockHitResult blockHit = (BlockHitResult) this.client.crosshairTarget;
                 BlockPos blockPos = blockHit.getBlockPos();
                 BlockState blockState = this.client.world.getBlockState(blockPos);
