@@ -24,10 +24,12 @@ public class KeyBindingConfig extends AutoAttack {
         ClientTickEvents.END_CLIENT_TICK.register(mc -> {
             if (keyBinding.wasPressed()) {
                 if (AutoAttackConfig.preventsHittingBlocks) {
-                    mc.player.sendMessage(Text.literal("Prevents Hitting Blocks OFF!"));
+                    //mc.player.sendMessage(Text.literal("Prevents Hitting Blocks OFF!"));
+                    mc.player.sendMessage(Text.translatable("text.KeyBindingConfig.preventsHittingBlocks.OFF"));
                     AutoAttackConfig.preventsHittingBlocks = false;
                 } else {
-                    mc.player.sendMessage(Text.literal("Prevents Hitting Blocks ON!"));
+                    //mc.player.sendMessage(Text.literal("Prevents Hitting Blocks ON!"));
+                    mc.player.sendMessage(Text.translatable("text.KeyBindingConfig.preventsHittingBlocks.ON"));
                     AutoAttackConfig.preventsHittingBlocks = true;
                 }
             }
