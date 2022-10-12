@@ -32,10 +32,11 @@ public class AutoAttack implements ClientModInitializer {
 					&& mc.player.getAttackCooldownProgress(0) >= 1) {
 				if (mc.crosshairTarget != null) {
 					if (mc.crosshairTarget.getType() == HitResult.Type.BLOCK && AutoAttackConfig.cleanCut) {
-						BlockPos blockPos = new BlockPos(mc.crosshairTarget.getPos().x, mc.crosshairTarget.getPos().y, mc.crosshairTarget.getPos().z);
-						BlockState state = mc.world.getBlockState(blockPos);
+						BlockHitResult blockHit = (BlockHitResult) mc.crosshairTarget;
+						BlockPos blockPos = blockHit.getBlockPos();
+						BlockState blockState = mc.world.getBlockState(blockPos);
 
-						if (state.getCollisionShape(mc.world, blockPos).isEmpty() || state.getHardness(mc.world, blockPos) == 0.0F) {
+						if (blockState.getCollisionShape(mc.world, blockPos).isEmpty() || blockState.getHardness(mc.world, blockPos) == 0.0F) {
 							float reach = mc.interactionManager.getReachDistance();
 							Vec3d camera = mc.player.getCameraPosVec(1.0F);
 							Vec3d rotation = mc.player.getRotationVec(1.0F);
