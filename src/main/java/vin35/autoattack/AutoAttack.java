@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -53,6 +54,40 @@ public class AutoAttack implements ClientModInitializer {
 							mc.interactionManager.attackEntity(mc.player, entity);
 							mc.player.swingHand(Hand.MAIN_HAND);
 						}
+					}
+				}
+			}
+
+			//auto bow
+			if (mc.options.useKey.isPressed() && mc.player != null) {
+				ItemStack stack = mc.player.getActiveItem();
+				Item item = stack.getItem();
+
+				if (item == Items.BOW && AutoAttackConfig.autoBow) {
+					float progress = BowItem.getPullProgress(stack.getMaxUseTime() - mc.player.getItemUseTimeLeft() - 1);
+					//mc.player.sendMessage(Text.of(String.valueOf(progress)));
+					//mc.player.sendMessage(Text.of(String.valueOf(mc.player.getItemUseTimeLeft())));
+					if (progress == 1.0F) {
+						mc.interactionManager.stopUsingItem(mc.player);
+					}
+				}
+
+				if (item == Items.CROSSBOW && AutoAttackConfig.autoCrossBow) {
+					float progress = (stack.getMaxUseTime() - mc.player.getItemUseTimeLeft()) / (float) CrossbowItem.getPullTime(stack);
+					//mc.player.sendMessage(Text.of(String.valueOf(progress)));
+					//mc.player.sendMessage(Text.of(String.valueOf(mc.player.getItemUseTimeLeft())));
+					if (progress > 1.0F) {
+						mc.interactionManager.stopUsingItem(mc.player);
+						mc.interactionManager.interactItem(mc.player, Hand.MAIN_HAND);
+					}
+				}
+
+				if (item == Items.TRIDENT && AutoAttackConfig.autoTrident) {
+					float progress = (stack.getMaxUseTime() - mc.player.getItemUseTimeLeft()) / 10.0F;
+					//mc.player.sendMessage(Text.of(String.valueOf(progress)));
+					//mc.player.sendMessage(Text.of(String.valueOf(mc.player.getItemUseTimeLeft())));
+					if (progress > 1.0F) {
+						mc.interactionManager.stopUsingItem(mc.player);
 					}
 				}
 			}

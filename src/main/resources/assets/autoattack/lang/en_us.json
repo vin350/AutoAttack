@@ -4,6 +4,9 @@
   "autoattack.midnightconfig.preventsHittingBlocks": "Prevents you from hitting blocks in all tools",
   "autoattack.midnightconfig.preventsHittingBlocksSwords": "Prevents you from hitting blocks only in swords",
   "autoattack.midnightconfig.cleanCut": "Attack enemies through obstructions (similar to CleanCut Mod)",
+  "autoattack.midnightconfig.autoBow": "Automatically shoot the Bow",
+  "autoattack.midnightconfig.autoCrossBow": "Automatically shoot the CrossBow",
+  "autoattack.midnightconfig.autoTrident": "Automatically shoot the Trident",
 
   "key.autoattack.preventsHittingBlocks": "Toggle Prevents from hitting blocks",
   "category.autoattack.autoattack": "AutoAttack",
