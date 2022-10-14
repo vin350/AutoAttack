@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "autoattack",
+  "version": "${mod_version}",
+
+  "name": "Auto Attack",
+  "description": "Auto Attack makes it so that holding the attack button autoswings the sword, similar to the combat snapshots.",
+  "authors": [
+    "Vin35"
+  ],
+  "contributors": [
+    "Tfarecnim",
+    "BlazingTwist",
+    "Rongmario"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/autoattack",
+    "sources": "https://github.com/vin350/AutoAttack/tree/1.19.X",
+    "issues": "https://github.com/vin350/AutoAttack/issues"
+  },
+
+  "license": "MIT",
+  "icon": "assets/autoattack/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "vin35.autoattack.Main"
+    ],
+    "client": [
+      "vin35.autoattack.AutoAttack",
+      "vin35.autoattack.config.KeyBindingConfig"
+    ]
+  },
+  "mixins": [
+    "autoattack.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric-api": "*",
+    "midnightlib": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "autoattack.midnightconfig.title": "Configuração do AutoAttack",
+  "autoattack.midnightconfig.text1": "Auto Attack faz com que segurar o botão de ataque auto ataca com a espada.",
+  "autoattack.midnightconfig.preventsHittingBlocks": "Previne você de quebrar blocos com todas as ferramentas",
+  "autoattack.midnightconfig.preventsHittingBlocksSwords": "Previne você de quebrar blocos apenas com espadas",
+  "autoattack.midnightconfig.cleanCut": "Atacar inimigos através de obstáculos (similar ao mod CleanCut)",
+  "autoattack.midnightconfig.autoBow": "Lança automaticamente o Arco e Flecha",
+  "autoattack.midnightconfig.autoCrossBow": "Lança automaticamente o CrossBow",
+  "autoattack.midnightconfig.autoTrident": "Lança automaticamente o Tridente",
+
+  "key.autoattack.preventsHittingBlocks": "Alterna entre Prevenir a quebra de blocos",
+  "category.autoattack.autoattack": "AutoAttack",
+
+  "text.KeyBindingConfig.preventsHittingBlocks.OFF": "Previne quebrar blocos com todas as ferramentas DESATIVADO!",
+  "text.KeyBindingConfig.preventsHittingBlocks.ON": "Previne quebrar blocos com todas as ferramentas ATIVADO!"
+}
