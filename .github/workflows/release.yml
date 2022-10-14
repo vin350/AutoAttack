@@ -1,0 +1,67 @@
+name: release
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: validate gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: setup jdk 17
+        uses: actions/setup-java@v3.5.1
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew
+      - name: build
+        run: ./gradlew build
+      - name: capture build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifacts
+          path: |
+            build/libs/
+            build/CHANGELOG.md
+      - name: Setup Environment Variables
+        run: |
+          echo "$(cat $GITHUB_WORKSPACE/gradle.properties | grep supported_versions)" >> $GITHUB_ENV
+          echo "$(cat $GITHUB_WORKSPACE/gradle.properties | grep minecraft_version)" >> $GITHUB_ENV
+          echo "$(cat $GITHUB_WORKSPACE/gradle.properties | grep mod_version)" >> $GITHUB_ENV
+          echo "$(cat $GITHUB_WORKSPACE/gradle.properties | grep midnightlib_version)" >> $GITHUB_ENV
+      - name: Upload artifacts to Modrinth, Curseforge and GitHub
+        uses: Kir-Antipov/mc-publish@v3.2
+        with:
+          modrinth-id: AUfWGrm6
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          modrinth-dependencies: |
+            P7dR8mSH | depends | *
+            codAaoxh | includes | ${{ env.midnightlib_version }}
+
+          curseforge-id: 686783
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          curseforge-dependencies: |
+            fabric-api | depends | *
+            midnightlib | includes | ${{ env.midnightlib_version }}
+
+          github-tag: v${{ env.mod_version }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+          files-primary: build/libs/!(*-@(dev|sources|javadoc)).jar
+
+          name: AutoAttack v${{ env.mod_version }} mc${{ env.supported_versions }}
+          version: mc${{ env.supported_versions }}-v${{ env.mod_version }}
+          version-type: release
+          changelog-file: build/CHANGELOG.md
+
+          loaders: |
+            fabric
+          game-versions: |
+            1.19.1
+            1.19.2
+          java: |
+            17
+            18
