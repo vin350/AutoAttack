@@ -9,6 +9,6 @@
   "autoattack.midnightconfig.autoTrident": "自动射出三叉戟",
   "key.autoattack.preventsHittingBlocks": "切换阻止命中方块",
   "category.autoattack.autoattack": "自动攻击",
-  "text.KeyBindingConfig.preventsHittingBlocks.OFF": "阻止在所有工具中击中方块！",
-  "text.KeyBindingConfig.preventsHittingBlocks.ON": "Prevents hitting blocks in all tools ON!"
+  "text.KeyBindingConfig.preventsHittingBlocks.OFF": "防止在所有工具关闭时撞上障碍物！",
+  "text.KeyBindingConfig.preventsHittingBlocks.ON": "防止在所有工具开启时撞上障碍物！"
 }
