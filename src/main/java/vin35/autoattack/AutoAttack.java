@@ -1,7 +1,10 @@
 package vin35.autoattack;
 
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import com.google.gson.JsonObject;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -16,20 +19,45 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import vin35.autoattack.config.AutoAttackConfig;
+import vin35.autoattack.util.UpdateUtil;
 
 public class AutoAttack implements ClientModInitializer {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	//public static final Logger LOGGER = LoggerFactory.getLogger("autoattack");
+	public static String AUTOATTACK_VERSION;
+	public static String SERVER_VERSION;
+	public static String MINECRAFT_VERSION;
+	public static Boolean UPDATE;
 
 	@Override
 	public void onInitializeClient() {
 		//LOGGER.warn("Hello Fabric world!");
 
+		ModContainer autoattack = FabricLoader.getInstance().getModContainer("autoattack")
+				.orElseThrow(() -> new IllegalStateException("Couldn't find the mod container for autoattack"));
+
+		AUTOATTACK_VERSION = String.valueOf(autoattack.getMetadata().getVersion());
+		MINECRAFT_VERSION = UpdateUtil.getMinecraftVersion();
+
+		JsonObject json = UpdateUtil.getJsonObject("https://raw.githubusercontent.com/vin350/AutoAttack/updates/updates.json");
+
+		SERVER_VERSION = json.get(MINECRAFT_VERSION).getAsJsonObject().get("latest").getAsString();
+
+		UPDATE = UpdateUtil.compare(AUTOATTACK_VERSION, SERVER_VERSION) == -1;
+
 		ClientTickEvents.END_CLIENT_TICK.register(mc -> {
+			//check update
+			if (UPDATE && AutoAttackConfig.checkUpdate) {
+				if (mc.player != null) {
+					mc.player.sendMessage(Text.of("AutoAttack: new Update Detected! Version: " + SERVER_VERSION));
+					UPDATE = false;
+				}
+			}
+
 			//auto attack
-			if (mc.options.attackKey.isPressed() && mc.player != null
+			if (mc.options.attackKey.isPressed() && mc.player != null && mc.world != null && mc.interactionManager != null
 					&& mc.player.getAttackCooldownProgress(0) >= 1) {
 				if (mc.crosshairTarget != null) {
 					if (mc.crosshairTarget.getType() == HitResult.Type.BLOCK && AutoAttackConfig.cleanCut) {
@@ -59,7 +87,7 @@ public class AutoAttack implements ClientModInitializer {
 			}
 
 			//auto bow
-			if (mc.options.useKey.isPressed() && mc.player != null) {
+			if (mc.options.useKey.isPressed() && mc.player != null && mc.interactionManager != null) {
 				ItemStack stack = mc.player.getActiveItem();
 				Item item = stack.getItem();
 

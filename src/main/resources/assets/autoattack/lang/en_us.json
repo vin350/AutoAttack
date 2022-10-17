@@ -1,6 +1,7 @@
 {
   "autoattack.midnightconfig.title": "AutoAttack Config",
   "autoattack.midnightconfig.text1": "Auto Attack makes it so that holding the attack button autoswings the sword",
+  "autoattack.midnightconfig.checkUpdate": "Check for a new mod update",
   "autoattack.midnightconfig.preventsHittingBlocks": "Prevents you from hitting blocks in all tools",
   "autoattack.midnightconfig.preventsHittingBlocksSwords": "Prevents you from hitting blocks only in swords",
   "autoattack.midnightconfig.cleanCut": "Attack enemies through obstructions (similar to CleanCut Mod)",

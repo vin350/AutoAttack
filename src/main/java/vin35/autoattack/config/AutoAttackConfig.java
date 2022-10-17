@@ -8,6 +8,8 @@ public class AutoAttackConfig extends AutoAttack {
     @Comment
     public static Comment text1;
     @Entry
+    public static boolean checkUpdate = true;
+    @Entry
     public static boolean preventsHittingBlocks = false;
     @Entry
     public static boolean preventsHittingBlocksSwords = true;
