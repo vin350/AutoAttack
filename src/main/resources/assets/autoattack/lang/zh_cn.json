@@ -1,0 +1,14 @@
+{
+  "autoattack.midnightconfig.title": "自动攻击 配置",
+  "autoattack.midnightconfig.text1": "自动攻击使它能够按下攻击按钮自动滑动剑。",
+  "autoattack.midnightconfig.preventsHittingBlocks": "阻止您在所有工具中点击块",
+  "autoattack.midnightconfig.preventsHittingBlocksSwords": "阻止你只在剑中击中方块",
+  "autoattack.midnightconfig.cleanCut": "通过阻塞攻击敌人(类似于Clean剪切模式)",
+  "autoattack.midnightconfig.autoBow": "自动向弓箭头",
+  "autoattack.midnightconfig.autoCrossBow": "自动射出十字靴子",
+  "autoattack.midnightconfig.autoTrident": "自动射出三叉戟",
+  "key.autoattack.preventsHittingBlocks": "切换阻止命中方块",
+  "category.autoattack.autoattack": "自动攻击",
+  "text.KeyBindingConfig.preventsHittingBlocks.OFF": "阻止在所有工具中击中方块！",
+  "text.KeyBindingConfig.preventsHittingBlocks.ON": "Prevents hitting blocks in all tools ON!"
+}
