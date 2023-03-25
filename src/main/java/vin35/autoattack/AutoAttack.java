@@ -43,7 +43,10 @@ public class AutoAttack implements ClientModInitializer {
 
 		JsonObject json = UpdateUtil.getJsonObject("https://raw.githubusercontent.com/vin350/AutoAttack/updates/updates.json");
 
-		SERVER_VERSION = json.get(MINECRAFT_VERSION).getAsJsonObject().get("latest").getAsString();
+		var jsonObj = json.get(MINECRAFT_VERSION);
+		if (jsonObj != null) {
+			SERVER_VERSION = jsonObj.getAsJsonObject().get("latest").getAsString();
+		}
 
 		UPDATE = UpdateUtil.compare(AUTOATTACK_VERSION, SERVER_VERSION) == -1;
 
