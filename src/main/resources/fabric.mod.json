@@ -15,7 +15,7 @@
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/autoattack",
-    "sources": "https://github.com/vin350/AutoAttack/tree/1.19.X",
+    "sources": "https://github.com/vin350/AutoAttack",
     "issues": "https://github.com/vin350/AutoAttack/issues"
   },
 
@@ -37,7 +37,7 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.9",
+    "fabricloader": ">=0.14.18",
     "fabric-api": "*",
     "midnightlib": "*",
     "minecraft": "~1.19",
