@@ -29,7 +29,7 @@ public class AutoAttack implements ClientModInitializer {
 	public static String AUTOATTACK_VERSION;
 	public static String SERVER_VERSION;
 	public static String MINECRAFT_VERSION;
-	public static Boolean UPDATE;
+	public static Boolean UPDATE = false;
 
 	@Override
 	public void onInitializeClient() {
@@ -43,9 +43,11 @@ public class AutoAttack implements ClientModInitializer {
 
 		JsonObject json = UpdateUtil.getJsonObject("https://raw.githubusercontent.com/vin350/AutoAttack/updates/updates.json");
 
-		SERVER_VERSION = json.get(MINECRAFT_VERSION).getAsJsonObject().get("latest").getAsString();
-
-		UPDATE = UpdateUtil.compare(AUTOATTACK_VERSION, SERVER_VERSION) == -1;
+		var jsonObj = json.get(MINECRAFT_VERSION);
+		if (jsonObj != null) {
+			SERVER_VERSION = jsonObj.getAsJsonObject().get("latest").getAsString();
+			UPDATE = UpdateUtil.compare(AUTOATTACK_VERSION, SERVER_VERSION) == -1;
+		}
 
 		ClientTickEvents.END_CLIENT_TICK.register(mc -> {
 			//check update
