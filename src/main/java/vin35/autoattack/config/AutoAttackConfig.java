@@ -21,4 +21,6 @@ public class AutoAttackConfig extends AutoAttack {
     public  static  boolean autoCrossBow = true;
     @Entry
     public  static  boolean autoTrident = true;
+    @Entry
+    public  static  boolean afkAttack = false;
 }

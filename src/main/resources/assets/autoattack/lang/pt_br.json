@@ -8,10 +8,14 @@
   "autoattack.midnightconfig.autoBow": "Lança automaticamente o Arco e Flecha",
   "autoattack.midnightconfig.autoCrossBow": "Lança automaticamente o CrossBow",
   "autoattack.midnightconfig.autoTrident": "Lança automaticamente o Tridente",
+  "autoattack.midnightconfig.afkAttack": "Ataca automaticamente estando AFK",
 
-  "key.autoattack.preventsHittingBlocks": "Alterna entre Prevenir a quebra de blocos",
   "category.autoattack.autoattack": "AutoAttack",
+  "key.autoattack.preventsHittingBlocks": "Alterna entre Prevenir a quebra de blocos",
+  "key.autoattack.afkAttack": "Alterna entre Ataque em modo afk",
 
   "text.KeyBindingConfig.preventsHittingBlocks.OFF": "Previne quebrar blocos com todas as ferramentas DESATIVADO!",
-  "text.KeyBindingConfig.preventsHittingBlocks.ON": "Previne quebrar blocos com todas as ferramentas ATIVADO!"
+  "text.KeyBindingConfig.preventsHittingBlocks.ON": "Previne quebrar blocos com todas as ferramentas ATIVADO!",
+  "text.KeyBindingConfig.afkAttack.OFF": "Ataque em modo afk DESATIVADO!",
+  "text.KeyBindingConfig.afkAttack.ON": "Ataque em modo afk ATIVADO!"
 }

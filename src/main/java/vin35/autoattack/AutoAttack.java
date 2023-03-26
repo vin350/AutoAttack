@@ -59,7 +59,7 @@ public class AutoAttack implements ClientModInitializer {
 			}
 
 			//auto attack
-			if (mc.options.attackKey.isPressed() && mc.player != null && mc.world != null && mc.interactionManager != null
+			if ((mc.options.attackKey.isPressed() || AutoAttackConfig.afkAttack) && mc.player != null && mc.world != null && mc.interactionManager != null
 					&& mc.player.getAttackCooldownProgress(0) >= 1) {
 				if (mc.crosshairTarget != null) {
 					if (mc.crosshairTarget.getType() == HitResult.Type.BLOCK && AutoAttackConfig.cleanCut) {

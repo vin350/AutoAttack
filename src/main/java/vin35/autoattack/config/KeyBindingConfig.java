@@ -10,19 +10,26 @@ import vin35.autoattack.AutoAttack;
 
 public class KeyBindingConfig extends AutoAttack {
 
-    private static KeyBinding keyBinding;
+    private static KeyBinding preventsHittingBlocksKeyBinding;
+    private static KeyBinding afkAttackKeyBinding;
 
     @Override
     public void onInitializeClient() {
-        keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+        preventsHittingBlocksKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.autoattack.preventsHittingBlocks", // The translation key of the keybinding's name
                 InputUtil.Type.KEYSYM, // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
                 GLFW.GLFW_KEY_H, // The keycode of the key
                 "category.autoattack.autoattack" // The translation key of the keybinding's category.
         ));
+        afkAttackKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                "key.autoattack.afkAttack", // The translation key of the keybinding's name
+                InputUtil.Type.KEYSYM, // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
+                GLFW.GLFW_KEY_K, // The keycode of the key
+                "category.autoattack.autoattack" // The translation key of the keybinding's category.
+        ));
 
         ClientTickEvents.END_CLIENT_TICK.register(mc -> {
-            if (keyBinding.wasPressed()) {
+            if (preventsHittingBlocksKeyBinding.wasPressed() && mc.player != null) {
                 if (AutoAttackConfig.preventsHittingBlocks) {
                     //mc.player.sendMessage(Text.literal("Prevents Hitting Blocks OFF!"));
                     mc.player.sendMessage(Text.translatable("text.KeyBindingConfig.preventsHittingBlocks.OFF"));
@@ -31,6 +38,15 @@ public class KeyBindingConfig extends AutoAttack {
                     //mc.player.sendMessage(Text.literal("Prevents Hitting Blocks ON!"));
                     mc.player.sendMessage(Text.translatable("text.KeyBindingConfig.preventsHittingBlocks.ON"));
                     AutoAttackConfig.preventsHittingBlocks = true;
+                }
+            }
+            if (afkAttackKeyBinding.wasPressed() && mc.player != null){
+                if (AutoAttackConfig.afkAttack) {
+                    mc.player.sendMessage(Text.translatable("text.KeyBindingConfig.afkAttack.OFF"));
+                    AutoAttackConfig.afkAttack = false;
+                } else {
+                    mc.player.sendMessage(Text.translatable("text.KeyBindingConfig.afkAttack.ON"));
+                    AutoAttackConfig.afkAttack = true;
                 }
             }
         });
