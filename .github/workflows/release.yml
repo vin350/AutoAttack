@@ -59,9 +59,7 @@ jobs:
 
           loaders: |
             fabric
-          game-versions: |
-            1.19.1
-            1.19.2
+          game-versions: ${{ env.supported_versions }}
           java: |
             17
             18
