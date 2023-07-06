@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         java: [17, 18]
-        os: [ubuntu-20.04, windows-2022]
+        os: [ubuntu-22.04, windows-2023]
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout repository
