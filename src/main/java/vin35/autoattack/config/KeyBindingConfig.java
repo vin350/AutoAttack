@@ -11,7 +11,10 @@ import vin35.autoattack.AutoAttack;
 public class KeyBindingConfig extends AutoAttack {
 
     private static KeyBinding preventsHittingBlocksKeyBinding;
+
     private static KeyBinding afkAttackKeyBinding;
+
+    private static KeyBinding autoBowKeyBinding;
 
     @Override
     public void onInitializeClient() {
@@ -27,6 +30,12 @@ public class KeyBindingConfig extends AutoAttack {
                 GLFW.GLFW_KEY_K, // The keycode of the key
                 "category.autoattack.autoattack" // The translation key of the keybinding's category.
         ));
+        autoBowKeyBinding =KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                "key.autoattack.autoRanged",
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_J,
+                "category.autoattack.autoattack"
+        ));
 
         ClientTickEvents.END_CLIENT_TICK.register(mc -> {
             if (preventsHittingBlocksKeyBinding.wasPressed() && mc.player != null) {
@@ -40,6 +49,7 @@ public class KeyBindingConfig extends AutoAttack {
                     AutoAttackConfig.preventsHittingBlocks = true;
                 }
             }
+
             if (afkAttackKeyBinding.wasPressed() && mc.player != null){
                 if (AutoAttackConfig.afkAttack) {
                     mc.player.sendMessage(Text.translatable("text.KeyBindingConfig.afkAttack.OFF"));
@@ -47,6 +57,20 @@ public class KeyBindingConfig extends AutoAttack {
                 } else {
                     mc.player.sendMessage(Text.translatable("text.KeyBindingConfig.afkAttack.ON"));
                     AutoAttackConfig.afkAttack = true;
+                }
+            }
+
+            if (autoBowKeyBinding.wasPressed() && mc.player != null){
+                if (AutoAttackConfig.autoBow || AutoAttackConfig.autoCrossBow || AutoAttackConfig.autoTrident) {
+                    mc.player.sendMessage(Text.translatable("text.KeyBindingConfig.autoRanged.OFF"));
+                    AutoAttackConfig.autoBow = false;
+                    AutoAttackConfig.autoCrossBow = false;
+                    AutoAttackConfig.autoTrident = false;
+                } else {
+                    mc.player.sendMessage(Text.translatable("text.KeyBindingConfig.autoRanged.ON"));
+                    AutoAttackConfig.autoBow = true;
+                    AutoAttackConfig.autoCrossBow = true;
+                    AutoAttackConfig.autoTrident = true;
                 }
             }
         });

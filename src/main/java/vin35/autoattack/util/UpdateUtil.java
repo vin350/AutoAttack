@@ -38,7 +38,9 @@ public class UpdateUtil {
 
     public static JsonObject getJsonObject(String sURL) {
         String jsonStr = getJsonString(sURL);
-        assert jsonStr != null;
+        if(jsonStr == null){
+            return null;
+        }
         return JsonParser.parseString(jsonStr).getAsJsonObject();
     }
 
