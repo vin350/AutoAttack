@@ -5,7 +5,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
@@ -36,8 +35,6 @@ public class AutoAttack implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		//LOGGER.warn("Hello Fabric world!");
-
 		checkUpdates();
 
 		ClientTickEvents.END_CLIENT_TICK.register(mc -> {
@@ -59,7 +56,7 @@ public class AutoAttack implements ClientModInitializer {
 	}
 
 	private void checkUpdates(){
-		LOGGER.debug("Checking for updates...");
+		LOGGER.info("Checking for updates...");
 		ModContainer autoattack = FabricLoader.getInstance().getModContainer("autoattack")
 				.orElseThrow(() -> new IllegalStateException("Couldn't find the mod container for autoattack"));
 
@@ -69,6 +66,7 @@ public class AutoAttack implements ClientModInitializer {
 		JsonObject json = UpdateUtil.getJsonObject("https://raw.githubusercontent.com/vin350/AutoAttack/updates/updates.json");
 
 		if(json == null){
+			LOGGER.warn("There was an unexpected error while retrieving update data.");
 			return;
 		}
 
@@ -85,11 +83,8 @@ public class AutoAttack implements ClientModInitializer {
 			return;
 		}
 
-		LOGGER.debug(mc.crosshairTarget.getType().name());
 		if (mc.crosshairTarget == null) {
-			LOGGER.warn("Target is empty. AT: "+AutoAttackConfig.alwaysAttack);
 			if(AutoAttackConfig.alwaysAttack){
-				LOGGER.debug("Attack air");
 				mc.interactionManager.interactItem(mc.player, Hand.MAIN_HAND);
 				mc.player.swingHand(Hand.MAIN_HAND);
 			}
@@ -134,8 +129,10 @@ public class AutoAttack implements ClientModInitializer {
 			}
 
 			if (item == Items.CROSSBOW && AutoAttackConfig.autoCrossBow) {
-				float progress = (stack.getMaxUseTime() - mc.player.getItemUseTimeLeft()) / (float) CrossbowItem.getPullTime(stack);
-				if (progress >= 1.0F) {
+				float pullTime = CrossbowItem.getPullTime(stack);
+				float timeLeft = mc.player.getItemUseTimeLeft();
+				float progress = (pullTime - timeLeft) / pullTime;
+				if (progress >= 1.3F) {
 					mc.interactionManager.stopUsingItem(mc.player);
 					mc.interactionManager.interactItem(mc.player, Hand.MAIN_HAND);
 				}
@@ -143,7 +140,7 @@ public class AutoAttack implements ClientModInitializer {
 
 			if (item == Items.TRIDENT && AutoAttackConfig.autoTrident) {
 				float progress = (stack.getMaxUseTime() - mc.player.getItemUseTimeLeft()) / 10.0F;
-				if (progress >= 1.0F) {
+				if (progress >= 1.3F) {
 					mc.interactionManager.stopUsingItem(mc.player);
 				}
 			}
