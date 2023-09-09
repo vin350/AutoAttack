@@ -6,8 +6,8 @@ jobs:
   build:
     strategy:
       matrix:
-        java: [17, 18]
-        os: [ubuntu-22.04, windows-2023]
+        java: [17]
+        os: [ubuntu-22.04]
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout repository
